@@ -6,4 +6,70 @@ El equivalente al clásico "Hola, Mundo" en hardware es el encendido (y apagado)
 
 ### Armando el circuito
 
-Desconectemos la esp32, ya que armaremos nuestro circuito electrónico primero. Necesitaremos un led, una resistencia de `220Ω` y un par de cables "macho-hembra". Los conectaremos de la siguiente manera.
+Desconectemos la esp32, ya que armaremos nuestro circuito electrónico primero. Necesitaremos un led, una resistencia de `220Ω` y un par de cables "macho-hembra". Los conectaremos de la siguiente manera:
+
+- El led tiene una terminal más corta, es la tierra o `GND`. A esta se conecta cualquier terminal de la resistencia.
+- La terminal restante de la resistencia se conecta con un cable a cualquier pin `GND` de la esp32.
+- La terminal restante del led se conecta con el otro cable al pin G2 de la placa.
+
+### Encendiendo el led
+
+Una vez tengamos el circuito armado, toca programarlo en tiempo real. Volvemos a conectar la placa a la PC y nos aseguramos de conectarla también en el *Arduino Lab*. Cuando haya aparecido el prompt de microPython, comenzamos escribiendo en la terminal las siguientes líneas, dando {{<kbd Intro>}} cada vez que terminemos.
+
+```python
+# Importamos las librerías necesarias
+import machine
+import time
+
+# Asignamos el pin 2 a una variable de tipo salida
+led = machine.Pin(2, machine.Pin.OUT)
+
+# Encendemos el led
+led.on()
+
+# Y lo apagamos
+led.off()
+```
+
+El led debe encender y apagar conforme alternamos las dos últimas líneas de código.
+
+## Parpadeando
+
+Vamos un paso más allá. Hagamos que el led encienda y apague de manera ininterrumpida. Presionamos el botón *Reset* y volvemos a la terminal. Ahí repetimos la carga de librerías y la declaración de la variable `led`.
+
+Pero en lugar de repetir el encendido y apagado de manera manual, programaremos un ciclo `while` que lo haga por nosotros. Comenzamos escribiendo las líneas:
+
+```python
+# Creamos un ciclo ininterrumpido
+while True:
+    # Encender el led
+    led.on()
+    # Mantener un segundo
+    time.sleep(1)
+    # Apagar el led
+    led.off()
+    # Mantener otro segundo
+    time.sleep(1)
+```
+
+Damos un par de {{<kbd Intro>}} o incluso más hasta que led comience a parpadear.
+
+## Cargando el archivo
+
+Lo anterior no es permanente. Si reiniciamos la placa o la desconectamos, las instrucciones se perderán. Si deseamos que la esp32 recuerde qué la pusimos a hacer, debemos cargar el código en ella. En la ventana del editor de *Lab* escribimos las instrucciones anteriores:
+
+```python
+import machine
+import time
+
+led = machine.Pin(2, machine.Pin.OUT)
+
+while True:
+    led.on()
+    time.sleep(1)
+    led.off()
+    time.sleep(1)
+```
+
+y lo guardamos estrictamente como `main.py`. En la parte superior derecha del IDE se encuentra un par de botones, de los cuales el derecho se llama *Files*. Damos clic en él y la ventana principal cambiará a un navegador de archivos, o más bien, dos pestañas del navegador de archivos. La izquierda se corresponde con la placa, teniendo un archivo `boot.py`, mientras que a la derecha tenemos la carpeta en la que guardamos nuestro `main.py`. Seleccionamos este último y lo mandamos a la izquierda por medio de los botones centrales de la ventana. Aceptamos cualquier aviso que aparezca y volvemos al editor. Reiniciamos la placa y esta ya debería realizar los comandos que escribimos, a pesar de que la desconectemos.
+
