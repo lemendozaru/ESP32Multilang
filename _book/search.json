@@ -1,0 +1,82 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programando la ESP32 con varios lenguajes",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "previos.html",
+    "href": "previos.html",
+    "title": "2  Requisitos previos",
+    "section": "",
+    "text": "2.1 Windows\nEstos dependen del sistema operativo en el que vayamos a trabajar. De entrada, pareciera ser más sencillo en plataformas como Windows, aunque esto puede cuestionarse un poco debido a la falta de controladores preinstalados en dicho sistema.\nPara poder desarrollar nuestras aplicaciones embebidas con microPython en Windows necesitamos tener los controladores UART para la PC y Python instalado tanto en la misma como en la placa ESP32.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Requisitos previos</span>"
+    ]
+  },
+  {
+    "objectID": "previos.html#windows",
+    "href": "previos.html#windows",
+    "title": "2  Requisitos previos",
+    "section": "",
+    "text": "2.1.1 Controladores UART\nSe obtienen en el sitio de Silicon Labs, siendo suficiente el comprimido CP210x Universal Windows Drivers. En este se encuentra un archivo llamado silabser.inf. Darle clic derecho y luego Instalar.\n\n\n2.1.2 Python\nLo primero se consigue descargando el instalador en python.org. Una vez instalado, podemos instalar la siguiente herramienta.\n\n\n2.1.3 ESPtool\nEn la terminal (el CMD en Windows) escribimos el comando\npip install esptool\nCabe mencionar que en ocasiones este comando no funciona, por lo que tocará buscar otras alternativas, del estilo de:\npython.exe -m install esptool",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Requisitos previos</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "previos.html#linux",
+    "href": "previos.html#linux",
+    "title": "2  Requisitos previos",
+    "section": "2.2 Linux",
+    "text": "2.2 Linux\nPython viene instalado por defecto en la mayoría de las distribuciones Linux, por lo que solo será necesario instalar esptool, lo cual dependerá de la distro en sí. En el caso de ArchLinux y derivadas basta con\nsudo pacman -S esptool",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Requisitos previos</span>"
+    ]
+  },
+  {
+    "objectID": "previos.html#micropython",
+    "href": "previos.html#micropython",
+    "title": "2  Requisitos previos",
+    "section": "2.3 MicroPython",
+    "text": "2.3 MicroPython\n\n2.3.1 Detectando la placa\nConectamos la ESP32 a la PC y nos aseguramos que ha sido detectada. En Windows podemos verlo en el Gestor de Dispositivos -&gt; Puertos, típicamente estando en los COMx (siendo x un número).\nEn Linux hay que escribir en la terminal\nlsusb\nEntonces nos dirigimos al sitio de descargas de microPython (https://micropython.org/download/?port=esp32) y elegimos el binario correspondiente a nuestra placa. Típicamente es la ESP32/WROOM, pero debemos verificar con la imagen de referencia que el mismo sitio coloca. Descargamos el firmware más reciente y lo dejamos en la carpeta que nos parezca más adecuada.\n\n\n2.3.2 Borrando el firmware\nDespués debemos borrar la memoria flash de la placa. Basta con escribir en la terminal de Windows:\nesptool.py erase-flash\nO en Linux:\nesptool erase-flash\nEs probable que en Linux debamos hacerlo con permisos de superusuario. Además, si ocurre un error de escritura, sobretodo si la placa es nueva, debemos habilitar el modo escritura, lo cual se logra presionando el botón BOOT de la misma cuando aparezca el mensaje Connecting... y soltarlo cuando ya haya comenzado a escribir.\nSi no es encontrada la placa, podemos forzar la escritura del comando agregando el parámetro --port COMx:\nesptool.py --port COMx erase-flash\n\n\n2.3.3 Instalando microPython en la placa\nEstando en la terminal, nos dirigimos a la carpeta en la que dejamos el firmware descargado y procedemos a instalarlo en la placa. Escribimos el comando\nesptool.py --baud 460800 write-flash 0x1000 ESP32_GENERIC-20260406-v1.28.0.bin\nEs probable que la versión de microPython haya cambiado, por lo que el nombre del archivo difiera.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Requisitos previos</span>"
+    ]
+  }
+]

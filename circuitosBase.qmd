@@ -1,0 +1,9 @@
+# Circuitos Básicos con microPython
+
+## Nuestro "Hola, Mundo"
+
+El equivalente al clásico "Hola, Mundo" en hardware es el encendido (y apagado) de un led. Toda vez que el *Arduino Lab* ya haya reconocido la placa, en su parte inferior aparecerá una terminal. En ella se debe ver el prompt de Python `>>>`, lo cual nos indica que la placa está lista para recibir órdenes.
+
+### Armando el circuito
+
+Desconectemos la esp32, ya que armaremos nuestro circuito electrónico primero. Necesitaremos un led, una resistencia de `220Ω` y un par de cables "macho-hembra". Los conectaremos de la siguiente manera.
