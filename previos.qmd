@@ -93,7 +93,7 @@ Elegimos la ubicación y, si tenemos conectada la placa a la PC, podemos optar p
 Probablemente en Linux surjan problemas de permisos. En Arch y derivadas se resuelve reiniciando después de ejecutar en consola:
 
 ```bash
-sudo usermod -a -G uucp usuario
+sudo usermod -a -G uucp <usuario>
 ```
 
 Donde `usuario` es el nombre de quien inicia la sesión en Linux.
